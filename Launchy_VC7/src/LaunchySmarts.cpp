@@ -93,7 +93,7 @@ template <> void AFXAPI SerializeElements <ArchiveType> ( CArchive& ar,
 }
 
 
-bool less_than(const shared_ptr<FileRecord> a, const shared_ptr<FileRecord> b)
+bool less_than(const std::shared_ptr<FileRecord> a, const std::shared_ptr<FileRecord> b)
 {
 
 	if (a->isHistory) { return true; }
@@ -165,8 +165,8 @@ LaunchySmarts::LaunchySmarts(void)
 LaunchySmarts::~LaunchySmarts(void)
 {
 	getCatalogLock();
-	shared_ptr<Options> ops =  ((CLaunchyDlg*)AfxGetMainWnd())->options;
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Options> ops =  ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	ops->getLock();
 	this->archiveCatalog(ops->get_dataPath(), plugins.get());
 	ops->relLock();
@@ -379,7 +379,7 @@ UINT ScanStartMenu(LPVOID pParam)
 
 void LaunchySmarts::LoadCatalog(void)
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	
 	if (ops->get_Indexing()) {
 		// Already indexing, abort
@@ -570,7 +570,7 @@ void LaunchySmarts::Update(CString txt, bool UpdateDropdown, CString oneTimeHist
 }
 
 int LaunchySmarts::FindSearchOwner(int& OwnerType) {
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 
 
 	// Is the top match a plugin identifier?
@@ -607,12 +607,12 @@ int LaunchySmarts::FindSearchOwner(int& OwnerType) {
 
 void LaunchySmarts::FindMatches(CString txt)
 {
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	int OwnerType;
 	int owner = FindSearchOwner(OwnerType);
 
 	if (OwnerType != OWNER_LAUNCHY) {
-		shared_ptr<vector<FileRecordPtr> > pluginMatches = plugins->GetSearchOptions(owner);
+		std::shared_ptr<vector<FileRecordPtr> > pluginMatches = plugins->GetSearchOptions(owner);
 		for(size_t i = 0; i < pluginMatches->size(); i++) {
 				matches.push_back(pluginMatches->at(i));
 		}
@@ -670,7 +670,7 @@ inline BOOL LaunchySmarts::Match(FileRecordPtr record, CString txt)
 
 void LaunchySmarts::Launch(void)
 {
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	int RegExOwner = plugins->IsSearchOwned(searchTxt);
 
 	if (SearchStrings.GetSize() > 0 && SearchPluginID != -1) {
@@ -692,7 +692,7 @@ void LaunchySmarts::Launch(void)
 		}
 		else {
 			TabbedMatch->setUsage(TabbedMatch->usage + 1);
-			shared_ptr<FileRecord> tmp = TabbedMatch;
+			std::shared_ptr<FileRecord> tmp = TabbedMatch;
 			exeLauncher.Run(tmp, searchTxt);
 		}
 	}

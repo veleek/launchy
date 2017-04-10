@@ -30,7 +30,7 @@ using namespace boost;
 class Skin
 {
 public:
-	shared_ptr<CIniFile> ini;
+	boost::shared_ptr<CIniFile> ini;
 	Skin(CString dir);
 public:
 	~Skin(void);

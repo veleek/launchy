@@ -1,8 +1,6 @@
 #ifndef LimitSingleInstance_H
 #define LimitSingleInstance_H
 
-#include <windows.h> 
-
 //This code is from Q243953 in case you lose the article and wonder
 //where this code came from.
 class CLimitSingleInstance

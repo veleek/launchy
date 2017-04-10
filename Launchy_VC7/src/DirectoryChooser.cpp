@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //#include "Options.h"
 #include "LaunchyDlg.h"
 #include ".\directorychooser.h"
+using namespace boost;
 
 // DirectoryChooser dialog
 
@@ -102,7 +103,7 @@ void SetWidthByContentInListBox(CDialog* pDlg, int nID)
 
 void DirectoryChooser::OnBnClickedAddDirectory()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	// TODO: Add your control notification handler code here
 	BROWSEINFO bi = { 0 };
@@ -146,7 +147,7 @@ void DirectoryChooser::OnBnClickedRemoveDirectory()
 		return;
 	}
 	Directories.GetText(Directories.GetCurSel(), name);
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	vector<DirOptions> D = ops->get_Directories();
 	for(vector<DirOptions>::iterator it = D.begin(); it != D.end(); ) {
@@ -163,7 +164,7 @@ void DirectoryChooser::OnBnClickedRemoveDirectory()
 }
 void DirectoryChooser::OnBnClickedDefaultDirectory()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	vector<DirOptions> D;
 	Directories.ResetContent();
@@ -187,7 +188,7 @@ void DirectoryChooser::OnBnClickedDefaultDirectory()
 
 void DirectoryChooser::OnBnClickedAddType()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	CString txt;
 	TypeEdit.GetWindowTextW(txt);
 	if (txt == "")
@@ -205,7 +206,7 @@ void DirectoryChooser::OnBnClickedAddType()
 
 void DirectoryChooser::OnBnClickedDefaultType()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	vector<CString> T;
 	Types.ResetContent();
 	T.push_back(_T(".lnk"));
@@ -221,7 +222,7 @@ void DirectoryChooser::OnBnClickedRemoveType()
 		return;
 	}
 	Types.GetText(Types.GetCurSel(), name);
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	vector<CString> T = ops->get_Types();
 	for(vector<CString>::iterator it = T.begin(); it != T.end(); ) {
@@ -241,8 +242,8 @@ BOOL DirectoryChooser::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
-	shared_ptr<LaunchySmarts> smarts = ((CLaunchyDlg*)AfxGetMainWnd())->smarts;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<LaunchySmarts> smarts = ((CLaunchyDlg*)AfxGetMainWnd())->smarts;
 
 	CString d;
 	d.Format(_T("Indexing %d files"), smarts->catFiles);
@@ -280,7 +281,7 @@ void DirectoryChooser::OnBnClickedOk()
 
 void DirectoryChooser::OnBnClickedCancel()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	ops->set_Directories(dbak);
 	ops->set_Types(tbak);
 
@@ -293,7 +294,7 @@ void DirectoryChooser::OnBnClickedCancel()
 
 void DirectoryChooser::OnLbnSelchangeList1()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	vector<DirOptions> D = ops->get_Directories();
 
@@ -313,7 +314,7 @@ void DirectoryChooser::OnLbnSelchangeList1()
 
 void DirectoryChooser::OnBnClickedAddLocalType()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	UpdateData(1);
 	LocalTypes.AddString(szLocalType);
 	vector<DirOptions> D = ops->get_Directories();
@@ -337,7 +338,7 @@ void DirectoryChooser::OnBnClickedAddLocalType()
 
 void DirectoryChooser::OnBnClickedRemoveLocalType()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	CString name;
 	int item = LocalTypes.GetCurSel();
@@ -372,7 +373,7 @@ void DirectoryChooser::OnBnClickedRemoveLocalType()
 
 void DirectoryChooser::OnBnClickedDefaultLocalType()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	vector<DirOptions> D = ops->get_Directories();
 
 	CString dirname;

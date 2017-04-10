@@ -57,13 +57,13 @@ class Options
 {
 public:
 
-	shared_ptr<CIniFile> ini;
-	vector<shared_ptr<Skin> > skins;
+	std::shared_ptr<CIniFile> ini;
+	vector<std::shared_ptr<Skin> > skins;
 	//	CArray<CString> Types;
 	//	CArray<CString> Directories;
 
 
-	shared_ptr<Skin> skin;
+	std::shared_ptr<Skin> skin;
 	CString skinName;
 
 	bool usbmode;
@@ -78,7 +78,7 @@ public:
 	int posX;
 	int posY;
 	int ver;
-	//	CList<shared_ptr<LaunchyDir> > dirs;
+	//	CList<std::shared_ptr<LaunchyDir> > dirs;
 
 private:
 	HANDLE hMutex;

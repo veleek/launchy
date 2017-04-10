@@ -23,7 +23,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 #include "CDialogSK.h"
-#include "afxwin.h"
 #include "Options.h"
 #include "smartcombobox.h"
 #include "LaunchySmarts.h"
@@ -72,14 +71,14 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CUseShGetFileInfo IconInfo;
-	shared_ptr<LaunchySmarts> smarts;
+	std::shared_ptr<LaunchySmarts> smarts;
 //	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 //	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 //	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	afx_msg void OnWindowPosChanging(WINDOWPOS* lpwndpos);
 
-	shared_ptr<Options> options;
-	shared_ptr<Plugin> plugins;
+	std::shared_ptr<Options> options;
+	std::shared_ptr<Plugin> plugins;
 	afx_msg void OnClose();
 	afx_msg void OnDestroy();
 //	afx_msg void OnCbnEditchangeInput();

@@ -123,7 +123,7 @@ public:
 	vector<FileRecordPtr> Plugin::GetIdentifiers(Options*);
 	void Launch(int PluginID, TCHAR* FullPath);
 	int IsSearchOwned(CString searchTxt);
-	shared_ptr<vector<FileRecordPtr> > GetSearchOptions(int owner);
+	std::shared_ptr<vector<FileRecordPtr> > GetSearchOptions(int owner);
 	CString Plugin::GetSeparator(int PluginID);
 	unsigned long Plugin::GetPluginNameTag(int id);
 	HICON Plugin::GetIcon(int id);

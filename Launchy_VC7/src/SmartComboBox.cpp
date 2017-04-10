@@ -58,7 +58,7 @@ BEGIN_MESSAGE_MAP(SmartComboBox, CComboBox)
 	ON_CONTROL_REFLECT(CBN_EDITCHANGE, &SmartComboBox::OnCbnEditchange)
 	ON_CONTROL_REFLECT(CBN_SELENDOK, &SmartComboBox::OnSelEndOK)
 	ON_CONTROL_REFLECT(CBN_DROPDOWN, &SmartComboBox::OnCbnDropdown)
-	ON_MESSAGE(WM_CHANGE_COMBO_SEL, &SmartComboBox::AfterSelChange)
+//	ON_MESSAGE(WM_CHANGE_COMBO_SEL, &SmartComboBox::AfterSelChange)
 	ON_WM_DRAWITEM()
 	ON_WM_MEASUREITEM()
 END_MESSAGE_MAP()
@@ -453,7 +453,7 @@ LRESULT SmartComboBox::AfterSelChange(UINT wParam, LONG lParam) {
 	ParseSearchTxt();
 	//CleanText();
 
-	pDlg->smarts->Update(searchTxt,(bool) lParam);
+	pDlg->smarts->Update(searchTxt, lParam != 0);
 
 	
 	return true;

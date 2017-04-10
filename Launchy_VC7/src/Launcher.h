@@ -20,11 +20,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma once
 #include "boost/smart_ptr.hpp"
-using namespace boost;
-
 
 class FileRecord;
-typedef shared_ptr<FileRecord> FileRecordPtr;
+typedef std::shared_ptr<FileRecord> FileRecordPtr;
 
 
 

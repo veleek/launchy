@@ -33,7 +33,7 @@ using namespace std;
 #include "boost/smart_ptr.hpp"
 using namespace boost;
 
-typedef shared_ptr<vector<FileRecordPtr> > CharSectionPtr;
+typedef std::shared_ptr<vector<FileRecordPtr> > CharSectionPtr;
 
 class LaunchySmarts;
 #include "Options.h"

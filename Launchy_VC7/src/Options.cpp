@@ -242,7 +242,7 @@ void Options::Store(void)
 
 	ini->SetValueTime(_T("Launchy Information"), _T("InstallTime"), installTime.GetTime());
 
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 
 	if (plugins != NULL) {
 		for(int i = 0; i < plugins->allPlugins.size(); i++) {
@@ -268,7 +268,7 @@ void Options::LoadSkins(void)
 
 	INT_PTR count = skinDirs.GetCount();
 	for(int i = 0; i < count; i++) {
-		shared_ptr<Skin> x(new Skin(skinDirs[i]));
+		std::shared_ptr<Skin> x(new Skin(skinDirs[i]));
 		if (x->name == _T("")) continue;
 		skins.push_back(x);
 		if (x->name == skinName) {

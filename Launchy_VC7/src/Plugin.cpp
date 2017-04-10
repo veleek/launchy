@@ -66,7 +66,7 @@ Plugin::Plugin(void)
 
 Plugin::~Plugin(void)
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	for(uint i = 0; i < loadedPlugins.size(); i++) {
 		if (pfuncs[i].PluginGetStorage != NULL)
 			GetStorage(i, ops.get());
@@ -127,7 +127,7 @@ HICON Plugin::GetIcon(int id) {
 }
 
 void Plugin::SendStorage(CString PluginName, PLUGINSETSTORAGE PluginSetStorage) {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	// Send the plugin its storage
 	CStringArray valuenames, values;
 	int numValues = ops->ini->GetNumValues(PluginName);
@@ -147,7 +147,7 @@ void Plugin::SendStorage(CString PluginName, PLUGINSETSTORAGE PluginSetStorage) 
 }
 
 void Plugin::LoadDlls(bool FirstLoad /* = true */) {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 
 	CDiskObject disk;
 	CStringArray files;
@@ -295,7 +295,7 @@ void Plugin::CallOptionsDlg(const DLLProperties & props, HWND wnd) {
 }
 
 void Plugin::GetStorage(int id, Options* ops) {
-//	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+//	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 //	if (ops == NULL) return;
 
 	int numResults = 0;
@@ -353,9 +353,9 @@ vector<FileRecordPtr> Plugin::GetIdentifiers(Options* ops) {
 	return PluginRecords;
 }
 
-shared_ptr<vector<FileRecordPtr> > Plugin::GetSearchOptions(int owner)
+std::shared_ptr<vector<FileRecordPtr> > Plugin::GetSearchOptions(int owner)
 {
-	shared_ptr<vector<FileRecordPtr> > out;
+	std::shared_ptr<vector<FileRecordPtr> > out;
 	out.reset(new vector<FileRecordPtr>);
 
 /*	if (searchTxt == L"buff") {

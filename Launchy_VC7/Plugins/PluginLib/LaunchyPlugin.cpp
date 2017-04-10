@@ -23,9 +23,10 @@ void FreeSearchResult (SearchResult* sr) {
 /// </summary>
 /// <param name="str">Use this str</param>
 TCHAR* string2TCHAR(wstring str) {
-	TCHAR* dest = (TCHAR*) malloc(sizeof(TCHAR) * (str.length() + 1));
+	size_t size = sizeof(TCHAR) * (str.length() + 1);
+	TCHAR* dest = (TCHAR*) malloc(size);
 	if (dest == NULL) exit(1);
-	_tcscpy(dest, str.c_str());
+	_tcscpy_s(dest, size, str.c_str());
 	return dest;
 }
 
@@ -70,7 +71,8 @@ TCHAR* StringVectorToTCHAR( vector<wstring>& Strings) {
 	if (out == NULL) exit(1);
 	TCHAR* cur = out;
 	for(uint i = 0; i < Strings.size(); i++) {
-		_tcscpy(cur, Strings[i].c_str());
+		size_t length = (Strings[i].length() + 1);
+		_tcscpy_s(cur, length, Strings[i].c_str());
 		cur += Strings[i].length()+1;
 	}
 	return out;
@@ -97,9 +99,12 @@ TCHAR* SerializeStringMap(map<wstring,wstring> m) {
 	TCHAR* out = (TCHAR*) malloc(sizeof(TCHAR)* size);
 	TCHAR* cur = out;
 	for(map<wstring,wstring>::iterator it = m.begin(); it != m.end(); ++it) {
-		_tcscpy(cur, it->first.c_str());
+		size_t firstLength = it->first.length() + 1;
+		_tcscpy_s(cur, firstLength, it->first.c_str());
 		cur += it->first.length() + 1;
-		_tcscpy(cur, it->second.c_str());
+
+		size_t secondLength = it->second.length() + 1;
+		_tcscpy_s(cur, secondLength, it->second.c_str());
 		cur += it->second.length() + 1;
 	}
 	return out;
@@ -143,7 +148,7 @@ void PluginGetStorage(int* NumItems, TCHAR** ItemNames, TCHAR** ItemValues) {
 		values.push_back(it->second);
 	}
 
-	*NumItems = names.size();
+	*NumItems = (int)names.size();
 	*ItemNames = StringVectorToTCHAR(names);
 	*ItemValues = StringVectorToTCHAR(values);
 }

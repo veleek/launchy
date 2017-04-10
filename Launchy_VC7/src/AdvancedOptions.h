@@ -1,6 +1,4 @@
 #pragma once
-#include "afxwin.h"
-
 
 // AdvancedOptions dialog
 

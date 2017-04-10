@@ -61,9 +61,7 @@ int SearchPluginID;
 FileRecordPtr TabbedMatch;
 
 // CLaunchyApp initialization
-
-
-	CLimitSingleInstance g_SingleInstanceObj(TEXT("Global\\{ASDSAD0-DCC6-49b5-9C61-ASDSADIIIJJL}"));
+CLimitSingleInstance g_SingleInstanceObj(TEXT("Global\\{ASDSAD0-DCC6-49b5-9C61-ASDSADIIIJJL}"));
 
 BOOL CLaunchyApp::InitInstance()
 {

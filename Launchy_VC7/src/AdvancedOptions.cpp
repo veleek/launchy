@@ -45,7 +45,7 @@ END_MESSAGE_MAP()
 BOOL AdvancedOptions::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	
 	if (ops->usbmode) 
 		cb_usb.SetCheck(BST_CHECKED);
@@ -77,7 +77,7 @@ BOOL AdvancedOptions::OnInitDialog()
 
 void AdvancedOptions::OnBnClickedOk()
 {
-	shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
+	std::shared_ptr<Options> ops = ((CLaunchyDlg*)AfxGetMainWnd())->options;
 	UpdateData(1);
 	ops->listLength = i_listLength;
 	ops->indexTime = dbUpdateTime;
@@ -92,8 +92,8 @@ void AdvancedOptions::OnBnClickedOk()
 		ops->changeUsbMode(false);
 	}
 
-	ops->stickyWindow = cb_sticky.GetCheck();
-	ops->chkupdate = cb_update.GetCheck();
+	ops->stickyWindow = cb_sticky.GetCheck() != 0;
+	ops->chkupdate = cb_update.GetCheck() != 0;
 	ops->aot = cb_aot.GetCheck();
 
 	OnOK();

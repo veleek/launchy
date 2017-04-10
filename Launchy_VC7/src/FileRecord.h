@@ -21,9 +21,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "Launcher.h"
 
 #include "boost/smart_ptr.hpp"
-using namespace boost;
 
-typedef shared_ptr<FileRecord> FileRecordPtr;
+
+typedef std::shared_ptr<FileRecord> FileRecordPtr;
 
 class FileRecord : public CObject {
 public:

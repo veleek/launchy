@@ -50,7 +50,7 @@ BOOL CPluginDialog::OnInitDialog()
 	// TODO:  Add extra initialization here
 
 
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	if (plugins == NULL) return true;
 	plugins->LoadDlls(false);
 	PluginList.ResetContent();
@@ -72,7 +72,7 @@ BOOL CPluginDialog::OnInitDialog()
 
 void CPluginDialog::OnBnClickedOk()
 {
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	if (plugins == NULL) return;
 
 	// Tell the plugin manager of the 
@@ -117,7 +117,7 @@ void CPluginDialog::OnBnClickedOk()
 
 void CPluginDialog::OnBnClickedOptions()
 {
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	if (plugins == NULL) return;
 
 	int id = PluginList.GetCurSel();
@@ -127,7 +127,7 @@ void CPluginDialog::OnBnClickedOptions()
 
 void CPluginDialog::OnSelChange()
 {
-	shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
+	std::shared_ptr<Plugin> plugins = ((CLaunchyDlg*)AfxGetMainWnd())->plugins;
 	if (plugins == NULL) {
 		OptionsButton.EnableWindow(false);
 		return;
